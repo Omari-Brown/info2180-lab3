@@ -31,6 +31,16 @@ window.onload = function()
                 }            
             } 
         });
+        tile.addEventListener("mouseover", function ()
+        {
+            console.log("Changing style of element below mouse");
+            tile.classList.add("hover");
+        });
+        tile.addEventListener("mouseout", function ()
+        {
+            console.log("Removing style of element below mouse")
+            tile.classList.remove("hover");
+        });
 
     });
     
