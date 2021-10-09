@@ -67,27 +67,27 @@ window.onload = function()
         function checkwinner()
         {
             console.log("Checking Winners");
-            for(var x = 0; x <= 6; x=x+3 )
+            for(var x = 0; x <= 6; x=x+3)
             {
                 //console.log("For loop x is " + x);
                 if((tilestates[x] == "X" || tilestates[x] == "O") && tilestates[x] == tilestates[x+1] && tilestates[x] == tilestates[x+2])
                 {
-                    console.log("Inside if statement");
+                    //console.log("Inside if statement");
                     if (!lock)
                     {
                         document.getElementById("status").textContent = "Congratulations! "+  mark + " is the Winner!";
                         lock =true;
                     }
-                    //endGame();
+                    //endGame();  
                     break;
                 }
             }
-            for(var y = 0; y <= 2; y++ )
+            for(var y = 0; y <= 2; y++)
             {
                 //console.log("For loop y is " + y);
                 if((tilestates[y] == "X" || tilestates[y] == "O") && tilestates[y] == tilestates[y+3] && tilestates[y] == tilestates[y+6])
                 {
-                    console.log("Inside if statement");
+                    //console.log("Inside if statement");
                     if (!lock)
                     {
                         document.getElementById("status").textContent = "Congratulations! "+  mark + " is the Winner!";
@@ -99,24 +99,26 @@ window.onload = function()
             //console.log("Checking diagonals");
             if((tilestates[0] == "X" || tilestates[0] == "O") && tilestates[0] == tilestates[4] && tilestates[0] == tilestates[8])
             {
-                console.log("Inside if statement");
+                //console.log("Inside if statement");
                 if (!lock)
                 {
+                    //console.log("leading diagonal");
                     document.getElementById("status").textContent = "Congratulations! "+  mark + " is the Winner!";
                     lock =true;
                 }
             } else if ((tilestates[2] == "X" || tilestates[2] == "O") && tilestates[2] == tilestates[4] && tilestates[2] == tilestates[6])
             {
-                console.log("Inside if statement");
+                //console.log("Inside if statement");
                 if (!lock)
                 {
+                    //console.log("non-leading diagonal");
                     document.getElementById("status").textContent = "Congratulations! "+  mark + " is the Winner!";
                     lock =true;
                 }
             }
             if (freetiles == 0)
             {
-            console.log("Inside if statement");
+            //console.log("Inside if statement");
                 if (!lock)
                 {
                     document.getElementById("status").textContent = "Oh no! There is no winner";
@@ -126,4 +128,34 @@ window.onload = function()
         }
     });
 
+    var button = document.getElementsByClassName("btn")[0];
+    button.addEventListener("click", function ()
+    {
+        console.log("Resetting board");
+        mark = "X";
+        freetiles = 9;
+        tilestates = new Array(9);
+        lock = false;
+        var tiles = document.getElementsByClassName("square");
+        Array.from(tiles).forEach( function (tile)
+        {
+            tile.textContent = "";
+            tile.setAttribute("class", "square");
+            console.log(tile);
+        });
+        document.getElementById("status").textContent = "Move your mouse over a square and click to play an X or an O.";
+        
+        
+        /*var tiles = document.getElementById("board")
+        var element = tiles.lastElementChild;
+        console.log(element);
+        tiles.removeChild(element);
+
+        let myDiv = document.createElement("div");
+        let myText = document.createTextNode("mytext");
+        myDiv.append(myText);
+        myDiv.classList.add("square");
+        tiles.append(myDiv);
+        */
+    });
 }
