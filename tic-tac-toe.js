@@ -1,6 +1,7 @@
 "use strict";
 var mark = "X";
 var freetiles = 9;
+var lock = false;
 
 window.onload = function() 
 {
@@ -72,8 +73,12 @@ window.onload = function()
                 if((tilestates[x] == "X" || tilestates[x] == "O") && tilestates[x] == tilestates[x+1] && tilestates[x] == tilestates[x+2])
                 {
                     console.log("Inside if statement");
-                    document.getElementById("status").textContent = "Congratulations! "+  mark + " is the Winner!";
-                    endGame();
+                    if (!lock)
+                    {
+                        document.getElementById("status").textContent = "Congratulations! "+  mark + " is the Winner!";
+                        lock =true;
+                    }
+                    //endGame();
                     break;
                 }
             }
@@ -83,7 +88,11 @@ window.onload = function()
                 if((tilestates[y] == "X" || tilestates[y] == "O") && tilestates[y] == tilestates[y+3] && tilestates[y] == tilestates[y+6])
                 {
                     console.log("Inside if statement");
-                    document.getElementById("status").textContent = "Congratulations! "+  mark + " is the Winner!";
+                    if (!lock)
+                    {
+                        document.getElementById("status").textContent = "Congratulations! "+  mark + " is the Winner!";
+                        lock =true;
+                    }
                     break;
                 }
             }
@@ -91,18 +100,30 @@ window.onload = function()
             if((tilestates[0] == "X" || tilestates[0] == "O") && tilestates[0] == tilestates[4] && tilestates[0] == tilestates[8])
             {
                 console.log("Inside if statement");
-                document.getElementById("status").textContent = "Congratulations! "+  mark + " is the Winner!";
+                if (!lock)
+                {
+                    document.getElementById("status").textContent = "Congratulations! "+  mark + " is the Winner!";
+                    lock =true;
+                }
             } else if ((tilestates[2] == "X" || tilestates[2] == "O") && tilestates[2] == tilestates[4] && tilestates[2] == tilestates[6])
             {
                 console.log("Inside if statement");
-                document.getElementById("status").textContent = "Congratulations! "+  mark + " is the Winner!";
+                if (!lock)
+                {
+                    document.getElementById("status").textContent = "Congratulations! "+  mark + " is the Winner!";
+                    lock =true;
+                }
             }
             if (freetiles == 0)
             {
             console.log("Inside if statement");
-            document.getElementById("status").textContent = "Oh no! There is no winner";
+                if (!lock)
+                {
+                    document.getElementById("status").textContent = "Oh no! There is no winner";
+                    lock =true;
+                }
             }
         }
     });
-    
+
 }
